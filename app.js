@@ -5501,6 +5501,16 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
   if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   return buffer + "                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n    </div>\n    </div>\n    </div>";
+},"useData":true});
+
+this["HBtemplates"]["templates/notFound.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "<div id="
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + " class=\"col-md-4\">\n    <div id=\"proteoBlock\" class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
+    + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</strong> have not been found in our database. Please check again the sequence or enter a new peptide.\n        </div>\n    </div>\n</div>";
 },"useData":true});;
 $(document).ready(function () {
     var Nextprot = window.Nextprot;
@@ -5516,32 +5526,35 @@ $(document).ready(function () {
             $("#" + id + ' .showIsoform').is(':visible') ? $("#" + id + " .showIsoform").hide() : $("#" + id + " .showIsoform").show();
         });
     }
-
-    function getProteotypicityInfos() {
-        var inputList = $("#variantList").val();
-        var pepList = inputList.split(/[\s,]+/);
-
-        pepList.forEach(function (sequence, index) {
-            var id = "peptide" + index;
-            nx.getEntryforPeptide(sequence).then(function (data) {
-
-                function entryWithVariant(entry) {
+    
+    function throwError(pep) {
+        console.log("error throwns");
+        var peptide = {
+            name: pep
+        }
+        var template2 = HBtemplates['templates/notFound.tmpl'];
+        var results2 = template2(peptide);
+        $("#peptideResult").append(results2);
+        
+    }
+    
+    function entryWithVariant(entry) {
                     var withVariant = false;
                     entry.annotations.forEach(function (o) {
                         if (o.variant) withVariant = true;
                     });
                     return withVariant;
-                }
-                function entryWithoutVariant(entry) {
-                    var withoutVariant = false;
-                    entry.annotations.forEach(function (o) {
-                        if (!o.variant) withoutVariant = true;
-                    });
-                    return withoutVariant;
-                }
-
-
-                var isoformsLength = 0;
+    }
+    function entryWithoutVariant(entry) {
+        var withoutVariant = false;
+        entry.annotations.forEach(function (o) {
+            if (!o.variant) withoutVariant = true;
+        });
+        return withoutVariant;
+    }
+    
+    function addPeptideBox(data, sequence, id) {
+        var isoformsLength = 0;
                 data.forEach(function (o) {
                     isoformsLength += o.annotations.length;
                 });
@@ -5585,7 +5598,20 @@ $(document).ready(function () {
                 $("#peptideResult").append(results);
 
                 toggleIsoforms(id);
+    }
 
+    function getProteotypicityInfos() {
+        var inputList = $("#variantList").val();
+        var pepList = inputList.split(/[\s,]+/);
+
+        pepList.forEach(function (sequence, index) {
+            var id = "peptide" + index;
+            nx.getEntryforPeptide(sequence).then(function (data) {
+                console.log(data);
+                
+                if (data.length < 1) throwError(sequence);
+                
+                else addPeptideBox(data, sequence, id);
             });
         });
     }

@@ -12,32 +12,35 @@ $(document).ready(function () {
             $("#" + id + ' .showIsoform').is(':visible') ? $("#" + id + " .showIsoform").hide() : $("#" + id + " .showIsoform").show();
         });
     }
-
-    function getProteotypicityInfos() {
-        var inputList = $("#variantList").val();
-        var pepList = inputList.split(/[\s,]+/);
-
-        pepList.forEach(function (sequence, index) {
-            var id = "peptide" + index;
-            nx.getEntryforPeptide(sequence).then(function (data) {
-
-                function entryWithVariant(entry) {
+    
+    function throwError(pep) {
+        console.log("error throwns");
+        var peptide = {
+            name: pep
+        }
+        var template2 = HBtemplates['templates/notFound.tmpl'];
+        var results2 = template2(peptide);
+        $("#peptideResult").append(results2);
+        
+    }
+    
+    function entryWithVariant(entry) {
                     var withVariant = false;
                     entry.annotations.forEach(function (o) {
                         if (o.variant) withVariant = true;
                     });
                     return withVariant;
-                }
-                function entryWithoutVariant(entry) {
-                    var withoutVariant = false;
-                    entry.annotations.forEach(function (o) {
-                        if (!o.variant) withoutVariant = true;
-                    });
-                    return withoutVariant;
-                }
-
-
-                var isoformsLength = 0;
+    }
+    function entryWithoutVariant(entry) {
+        var withoutVariant = false;
+        entry.annotations.forEach(function (o) {
+            if (!o.variant) withoutVariant = true;
+        });
+        return withoutVariant;
+    }
+    
+    function addPeptideBox(data, sequence, id) {
+        var isoformsLength = 0;
                 data.forEach(function (o) {
                     isoformsLength += o.annotations.length;
                 });
@@ -81,7 +84,20 @@ $(document).ready(function () {
                 $("#peptideResult").append(results);
 
                 toggleIsoforms(id);
+    }
 
+    function getProteotypicityInfos() {
+        var inputList = $("#variantList").val();
+        var pepList = inputList.split(/[\s,]+/);
+
+        pepList.forEach(function (sequence, index) {
+            var id = "peptide" + index;
+            nx.getEntryforPeptide(sequence).then(function (data) {
+                console.log(data);
+                
+                if (data.length < 1) throwError(sequence);
+                
+                else addPeptideBox(data, sequence, id);
             });
         });
     }
