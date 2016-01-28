@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>neXtProt peptide viewer</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="app.js"></script>
+<!--
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="handlebars.min.js"></script>
+    <script src="nextprot.js"></script>
+    <script src="compiled_peptide_templates.js"></script>
+    <script src="proteotypicity.js"></script>
+-->
+</head>
+
+<body style="background:#F3F3F4;text-align:center;">
+    <div class="row">
+        <h1 style="margin-bottom:50px;">Proteotypicity Check Up</h1>
+    </div>
+    <div class="row" style="text-align:center;">
+        <div class="col-md-10 col-md-offset-1">
+            <form>
+                <div class="form-group">
+                    <label style="display:block;">Enter your peptide(s) : </label>
+                    <textarea id="variantList" class="form-control" rows="3"></textarea>
+                </div>
+                <button id="submitList" type="button" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div id="peptideResult"></div>
+        </div>
+    </div>
+
+    <script class="example">
+    </script>
+    <style>
+
+    </style>
+
+</body>
+
+</html>
