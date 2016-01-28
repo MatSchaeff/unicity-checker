@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
-                separator: ';\n'
+                separator: '\n'
             },
             basic: {
                 src: ['bower_components/jquery/dist/jquery.min.js',
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 dest: 'app.js'
             },
             css: {
-                src: ['bower_components/bootstrap/dist/css/bootstrap.css'],
+                src: ['bower_components/bootstrap/dist/css/bootstrap.css','css/style.css'],
                 dest:'app.css'
             }
         },

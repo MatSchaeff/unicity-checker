@@ -1,6 +1,9 @@
 $(document).ready(function () {
     var Nextprot = window.Nextprot;
     var nx = new Nextprot.Client("PeptideViewer", "nextprotTeam");
+    var exemples = "LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, \nCVSNTPGYCR, TTETLIILSR, IGTTVIDLENR"
+    
+    $("#variantList").text(exemples);
 
     function toggleIsoforms(id) {
         $("#" + id + ' #showIsoforms').text("Show isoforms");
@@ -13,15 +16,19 @@ $(document).ready(function () {
         });
     }
     
-    function throwError(pep) {
-        console.log("error throwns");
+    function throwPeptideError(pep) {
         var peptide = {
             name: pep
         }
         var template2 = HBtemplates['templates/notFound.tmpl'];
         var results2 = template2(peptide);
-        $("#peptideResult").append(results2);
+        $("#peptideResult").prepend(results2);
         
+    }
+    
+    function throwNbError(pep) {
+        var template3 = HBtemplates['templates/limitExceeded.tmpl'];
+        $("#peptideResult").prepend(template3);
     }
     
     function entryWithVariant(entry) {
@@ -31,6 +38,7 @@ $(document).ready(function () {
                     });
                     return withVariant;
     }
+    
     function entryWithoutVariant(entry) {
         var withoutVariant = false;
         entry.annotations.forEach(function (o) {
@@ -89,17 +97,22 @@ $(document).ready(function () {
     function getProteotypicityInfos() {
         var inputList = $("#variantList").val();
         var pepList = inputList.split(/[\s,]+/);
+        
+        if (pepList.length < 50) {
 
-        pepList.forEach(function (sequence, index) {
-            var id = "peptide" + index;
-            nx.getEntryforPeptide(sequence).then(function (data) {
-                console.log(data);
-                
-                if (data.length < 1) throwError(sequence);
-                
-                else addPeptideBox(data, sequence, id);
+            pepList.forEach(function (sequence, index) {
+                var id = "peptide" + index;
+                var sequence = sequence.toUpperCase();
+                nx.getEntryforPeptide(sequence).then(function (data) {
+                    console.log(data);
+
+                    if (data.length < 1) throwPeptideError(sequence);
+
+                    else addPeptideBox(data, sequence, id);
+                });
             });
-        });
+        }
+        else throwNbError();
     }
 
     $("#submitList").click(function () {

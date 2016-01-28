@@ -1,5 +1,9 @@
 this["HBtemplates"] = this["HBtemplates"] || {};
 
+this["HBtemplates"]["templates/limitExceeded.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of peptides (<strong>50</strong>).\n        </div>\n    </div>\n</div>";
+},"useData":true});
+
 this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 
@@ -115,11 +119,9 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
 },"useData":true});
 
 this["HBtemplates"]["templates/notFound.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+    var helper;
 
-  return "<div id="
-    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + " class=\"col-md-4\">\n    <div id=\"proteoBlock\" class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
-    + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</strong> have not been found in our database. Please check again the sequence or enter a new peptide.\n        </div>\n    </div>\n</div>";
+  return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
+    + this.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</strong> has not been found in our database. Please check again the sequence or enter a new peptide.\n        </div>\n    </div>\n</div>";
 },"useData":true});
