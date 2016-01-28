@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                     'bower_components/nextprot/dist/nextprot.js',
                     'js/compiled-templates.js',
                     'js/proteotypicity.js',
-                    'bower_components/iframe-resizer/src/iframeResizer.contentWindow.js'],
+                    'bower_components/iframe-resizer/js/iframeResizer.contentWindow.min.js'],
                 dest: 'app.js'
             },
             css: {
