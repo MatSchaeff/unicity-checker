@@ -11,7 +11,8 @@
     "jquery": "x.x.x",
     "bootstrap": "3.x.x",
     "handlebars" : "x.x.x",
-    "nextprot": "x.x.x"
+    "nextprot": "x.x.x",
+    "iframe-resizer": "~3.2.0"
   },
   "keywords": [
     "peptide",

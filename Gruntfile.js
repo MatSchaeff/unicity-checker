@@ -12,7 +12,8 @@ module.exports = function (grunt) {
                     'bower_components/handlebars/handlebars.js',
                     'bower_components/nextprot/dist/nextprot.js',
                     'js/compiled-templates.js',
-                    'js/proteotypicity.js'],
+                    'js/proteotypicity.js',
+                    'bower_components/iframe-resizer/src/iframeResizer.contentWindow.js'],
                 dest: 'app.js'
             },
             css: {
