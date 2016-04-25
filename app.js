@@ -5389,25 +5389,35 @@ this["HBtemplates"]["templates/overviewProtein.tmpl"] = Handlebars.template({"1"
 },"useData":true});
 this["HBtemplates"] = this["HBtemplates"] || {};
 
+this["HBtemplates"]["templates/apiCallFail.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Impossible to get the data !\n        </div>\n        <div class=\"panel-body\">\n            "
+    + this.escapeExpression(this.lambda(depth0, depth0))
+    + "\n        </div>\n    </div>\n</div>";
+},"useData":true});
+
 this["HBtemplates"]["templates/limitExceeded.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of peptides (<strong>50</strong>).\n        </div>\n    </div>\n</div>";
+    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of <strong>1000</strong> peptides.\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
 this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    return "proteo";
+},"3":function(depth0,helpers,partials,data) {
+    return "nonproteo";
+},"5":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(2, data, 0),"inverse":this.program(4, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.program(8, data, 0),"data":data})) != null ? stack1 : "")
     + "\n";
-},"2":function(depth0,helpers,partials,data) {
-    return "<div  class=\"panel panel-success\" style=\"margin:0px;min-height: 120px;\">\n        ";
-},"4":function(depth0,helpers,partials,data) {
-    return "<div class=\"panel panel-info\" style=\"margin:0px;min-height: 120px;\">";
 },"6":function(depth0,helpers,partials,data) {
+    return "<div  class=\"panel panel-success\" style=\"margin:0px;min-height: 120px;\">\n        ";
+},"8":function(depth0,helpers,partials,data) {
+    return "<div class=\"panel panel-info\" style=\"margin:0px;min-height: 120px;\">";
+},"10":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(7, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"7":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"11":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "                        <li>"
@@ -5415,34 +5425,34 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
     + " <em> ( Gene Name : "
     + alias3(((helper = (helper = helpers.geneName || (depth0 != null ? depth0.geneName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"geneName","hash":{},"data":data}) : helper)))
     + " )</em></li>\n";
-},"9":function(depth0,helpers,partials,data) {
+},"13":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"10":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"14":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "\n\n"
-    + ((stack1 = helpers.unless.call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"unless","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"11":function(depth0,helpers,partials,data) {
+    + ((stack1 = helpers.unless.call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"unless","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"15":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                        <li>"
     + this.escapeExpression(((helper = (helper = helpers.isoform || (depth0 != null ? depth0.isoform : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"isoform","hash":{},"data":data}) : helper)))
     + "</li>\n";
-},"13":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return "        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(2, data, 0),"inverse":this.program(4, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n";
-},"15":function(depth0,helpers,partials,data) {
-    return "                        <li>No other entries found</li>\n";
 },"17":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(18, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"18":function(depth0,helpers,partials,data) {
+  return "        "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.program(8, data, 0),"data":data})) != null ? stack1 : "")
+    + "\n";
+},"19":function(depth0,helpers,partials,data) {
+    return "                        <li>No other entries found</li>\n";
+},"21":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"22":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "                        <li class=\"variantIntoAccount\">"
@@ -5450,16 +5460,16 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
     + " <em> ( Gene Name : "
     + alias3(((helper = (helper = helpers.geneName || (depth0 != null ? depth0.geneName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"geneName","hash":{},"data":data}) : helper)))
     + " )</em></li>\n";
-},"20":function(depth0,helpers,partials,data) {
+},"24":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"21":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(25, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"25":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "\n\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"22":function(depth0,helpers,partials,data) {
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"26":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=this.escapeExpression, alias2=this.lambda;
 
   return "                        <li class=\"variantIntoAccount\">"
@@ -5475,33 +5485,35 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
     var stack1, helper, options, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=helpers.blockHelperMissing, buffer = 
   "<div id="
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + " class=\"col-md-4\">\n<div id=\"proteoBlock\" class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h5 class=\"text-center\" style=\"margin:0px;\">"
+    + " class=\"col-md-4 "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.withVariant : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "\">\n<div id=\"proteoBlock\" class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h5 class=\"text-center\" style=\"margin:0px;\">"
     + alias3(((helper = (helper = helpers.peptide || (depth0 != null ? depth0.peptide : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"peptide","hash":{},"data":data}) : helper)))
     + "</h5>\n    </div>\n<div id=\"proteoBody\" class=\"panel-body\" style=\"padding:0px;height:240px;overflow:auto;\">\n                        \n    <div class=\"pull-right\" style=\"margin-top:8px;margin-right: 15px;\">\n        <button id=\"showIsoforms\" type=\"button\" class=\"btn btn-default btn-xs\">Show isoforms</button>\n    </div>\n    <div id=\"proteomeProperties\">\n        <!--<div style=\"border-bottom:1px solid #E7EAEC;margin-top: -10px;margin-bottom:5px;\">-->\n        <!--<h5 id=\"proteotypicitySentence\"></h5>-->\n        <!--</div>-->\n";
-  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.proteotypicity) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Entry mapping</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n";
-  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.entries) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   buffer += "                    </ul>\n                </div>\n                <div class=\"showIsoform\" style=\"display:none\">\n                    <ul>\n                        ";
-  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(9, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   buffer += "                    </ul>\n                </div>\n            </div>\n        </div>\n";
-  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.proteotypicity) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
-  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Additional entries with known variants</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n"
-    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Additional mappings with known variants</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n"
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.entries) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   buffer += "                    </ul>\n                </div>\n                <div class=\"showIsoform\" style=\"display:none\">\n                    <ul>\n"
-    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "                        ";
-  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(20, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   return buffer + "                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n    </div>\n    </div>\n    </div>";
@@ -5531,6 +5543,24 @@ $(document).ready(function () {
             $("#" + id + ' .showIsoform').is(':visible') ? $("#" + id + " .showIsoform").hide() : $("#" + id + " .showIsoform").show();
         });
     }
+    function toggleProteo(){
+        $("#onlyProteo").click(function(){
+            if ($(this).is(':checked')) {
+                $(".nonproteo").hide();
+            }
+            else $(".nonproteo").show();
+            var pepShowed = $("#peptideResult>div:visible").length;
+            $("#countPepShowed").text(pepShowed);
+        })
+        $("#exceptProteo").click(function(){
+            if ($(this).is(':checked')) {
+                $(".proteo").hide();
+            }
+            else $(".proteo").show();
+            var pepShowed = $("#peptideResult>div:visible").length;
+            $("#countPepShowed").text(pepShowed);
+        })
+    }
     
     function throwPeptideError(pep) {
         var peptide = {
@@ -5545,6 +5575,14 @@ $(document).ready(function () {
     function throwNbError(pep) {
         var template3 = HBtemplates['templates/limitExceeded.tmpl'];
         $("#peptideResult").prepend(template3);
+        $(".shaft-load3").remove();
+    }
+    
+    function throwAPIError(message) {
+        var template4 = HBtemplates['templates/apiCallFail.tmpl'];
+        var fillTemplate = template4(message);
+        $("#peptideResult").prepend(fillTemplate);
+        $(".shaft-load3").remove();
     }
     
     function entryWithVariant(entry) {
@@ -5563,7 +5601,7 @@ $(document).ready(function () {
         return withoutVariant;
     }
     
-    function addPeptideBox(data, sequence, id) {
+    function addPeptideBox(data, sequence, id, pepTotalCount) {
         var isoformsLength = 0;
                 data.forEach(function (o) {
                     isoformsLength += o.annotations.length;
@@ -5577,8 +5615,12 @@ $(document).ready(function () {
                     };
                 });
                 var entriesLength = data.length;
+                
                 var entriesLengthWithoutVariant = entries.filter(function (d) {
-                    return d.withVariant === false;
+                    return d.withoutVariant === true;
+                }).length;
+                var entriesLengthWithVariant = entries.filter(function (d) {
+                    return d.withVariant === true;
                 }).length;
                 var entryMatching = {
                     id: id,
@@ -5586,7 +5628,7 @@ $(document).ready(function () {
                     proteotypicity: {
                         withVariant: entriesLength <= 1,
                         withoutVariant: entriesLengthWithoutVariant <= 1,
-                        onlyVariant: (entriesLength - entriesLengthWithoutVariant) < 1
+                        onlyVariant: entriesLengthWithVariant < 1
                     },
                     entries: entries,
                     isoforms: data.map(function (o) {
@@ -5605,35 +5647,133 @@ $(document).ready(function () {
                 };
                 var template = HBtemplates['templates/matchingEntries.tmpl'];
                 var results = template(entryMatching);
+                if ($("#peptideResult>div").length > pepTotalCount-10) $(".shaft-load3").remove();
                 $("#peptideResult").append(results);
 
                 toggleIsoforms(id);
     }
-
-    function getProteotypicityInfos() {
-        var inputList = $("#variantList").val();
-        var pepList = inputList.split(/[\s,]+/);
-        
-        if (pepList.length < 50) {
-
-            pepList.forEach(function (sequence, index) {
-                var id = "peptide" + index;
-                var sequence = sequence.toUpperCase();
-                nx.getEntryforPeptide(sequence).then(function (data) {
-                    console.log(data);
-
-                    if (data.length < 1) throwPeptideError(sequence);
-
-                    else addPeptideBox(data, sequence, id);
-                });
+    function getMaxList(str){
+        var charToCut = "";
+        var posToCut = 2001;
+        while (charToCut !== ",") {
+            posToCut -= 1;
+            charToCut = str[posToCut];
+        }
+        return posToCut;
+    }
+    function getApiCallList(list, str){
+        if (str.length > 2000) {
+            var posToCut = getMaxList(str);
+            list.push(str.substring(0,posToCut));
+            getApiCallList(list, str.substring(posToCut+1));
+            return list;
+        }
+        else {
+            list.push(str);
+            return list;
+        }
+    }
+    
+    function getPeptideByEntry(entry, isoform){
+        var peptideData = [];
+        nx.getAnnotationsByCategory(entry, "peptide-mapping").then(function(data){
+            data.annot.forEach(function(d){
+                if (d.targetingIsoformsMap.hasOwnProperty(isoform)){
+                    var positions = d.targetingIsoformsMap[isoform];
+                    peptideData.push({start: positions.firstPosition, end:positions.lastPosition});
+                }
+            })
+            nx.getProteinSequence(entry).then(function(isos){
+                var sequence = isos.filter(function(seq){return seq.uniqueName === isoform})[0].sequence;
+                var peptideList = "";
+                peptideData.forEach(function(p){
+                    peptideList += sequence.substring(p.start-1,p.end) + ",";
+                })
+                getProteotypicityInfos(peptideList);
+            })
+        }).catch(function(error) {
+                    console.log(error.responseText);
+                    var errorMessage = JSON.parse(error.responseText);
+                    throwAPIError(errorMessage.message);
+                })
+    }
+    function exportPepList(){
+        $("a#downloadList").click(function() {
+            var peptide_list = "";
+            $("#peptideResult>div:visible").each(function(){
+                peptide_list += $(this).attr("id") + "\n";
             });
+            this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(peptide_list);
+        });
+    }
+    
+    function listOrEntry(str){
+        if (str.startsWith("NX_")) {
+            parseStr = str.split("-");
+            var entry = parseStr[0];
+            var iso = str;
+            getPeptideByEntry(entry, iso);
+        }
+        else getProteotypicityInfos(str);
+    }
+
+    function getProteotypicityInfos(str) {
+        var pepListString = str.replace(/\s+/g, '');
+        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
+        console.log(pepListString.length);
+        var pepTotalCount = pepListString.split(",").length;
+        console.log(pepTotalCount);
+        if (pepTotalCount < 1000) {
+            $("#countPepTotal").text(pepTotalCount);
+            console.log("total peplist length : "+pepListString.length);
+            var apiCallList = getApiCallList([],pepListString);
+            console.log("nb of api calls : "+apiCallList.length); 
+//            var lastCall = false;
+            apiCallList.forEach(function(ac){
+                console.log("string length : "+ac.length);
+                var pepList = ac.split(",");
+                console.log("pep count : "+pepList.length);
+//                if (callIndex === apiCallList.length-1) lastCall=true;
+                
+                nx.getEntryforPeptide(ac).then(function (data) {
+                    pepList.forEach(function (sequence) {
+                        var id = sequence;
+                        var new_data = $.extend(true,[],data);
+                        new_data.forEach(function(d,i){
+                            new_data[i].annotations = d.annotations.filter(function(f){return f.cvTermName === sequence});
+                        })
+                        new_data = new_data.filter(function(d){return d.annotations.length > 0});
+                        if (new_data.length < 1) throwPeptideError(sequence);
+                        addPeptideBox(new_data, sequence, id, pepTotalCount);
+                    });
+                    var pepShowed = $("#peptideResult>div:visible").length;
+                    $("#countPepShowed").text(pepShowed);
+                })
+            });
+            toggleProteo();
         }
         else throwNbError();
     }
 
     $("#submitList").click(function () {
-        $("#peptideResult").html("");
-        getProteotypicityInfos();
+        
+        //uncheck the filters
+        $( ".filters input:checked" ).prop('checked',false);
+        
+        //reset the counter for visible peptides
+        $("#countPepShowed").text("0");
+        $("#countPepTotal").text("0");
+        
+        //add the loader
+        var source = $("#loader-template").html();
+        $("#peptideResult").html(source);
+
+//        $("#scn_alignment").fadeIn('slow');
+        
+        //begin the computation
+        var input = $("#variantList").val().toUpperCase();
+        listOrEntry(input);
+        exportPepList();
     });
 });
 /*! iFrame Resizer (iframeSizer.contentWindow.min.js) - v3.2.0 - 2015-09-23

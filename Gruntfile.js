@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['js/*.js'],
+                files: ['js/*.js','css/*.css'],
                 tasks: 'concat'
             },
             handlebars: {

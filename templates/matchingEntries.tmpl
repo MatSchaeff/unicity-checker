@@ -1,4 +1,4 @@
-<div id={{id}} class="col-md-4">
+<div id={{id}} class="col-md-4 {{#if proteotypicity.withVariant}}proteo{{else}}nonproteo{{/if}}">
 <div id="proteoBlock" class="panel panel-default">
     <div class="panel-heading">
         <h5 class="text-center" style="margin:0px;">{{peptide}}</h5>
@@ -47,7 +47,7 @@
         {{else}}<div class="panel panel-info" style="margin:0px;min-height: 120px;">{{/if}}
         {{/proteotypicity}}
             <div class="panel-heading" style="padding:1px 15px">
-                <h5>Additional entries with known variants</h5>
+                <h5>Additional mappings with known variants</h5>
             </div>
             <div class="panel-body">
                 <div class="showEntry" style="display:block">
