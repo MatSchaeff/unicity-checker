@@ -61,8 +61,12 @@ $(document).ready(function () {
                     };
                 });
                 var entriesLength = data.length;
+                
                 var entriesLengthWithoutVariant = entries.filter(function (d) {
-                    return d.withVariant === false;
+                    return d.withoutVariant === true;
+                }).length;
+                var entriesLengthWithVariant = entries.filter(function (d) {
+                    return d.withVariant === true;
                 }).length;
                 var entryMatching = {
                     id: id,
@@ -70,7 +74,7 @@ $(document).ready(function () {
                     proteotypicity: {
                         withVariant: entriesLength <= 1,
                         withoutVariant: entriesLengthWithoutVariant <= 1,
-                        onlyVariant: (entriesLength - entriesLengthWithoutVariant) < 1
+                        onlyVariant: entriesLengthWithVariant < 1
                     },
                     entries: entries,
                     isoforms: data.map(function (o) {
