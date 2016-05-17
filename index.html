@@ -23,22 +23,32 @@
             <form>
                 <div class="form-group">
                     <label style="display:block;">Enter your peptide(s) : </label>
-                    <textarea id="variantList" class="form-control" rows="5"></textarea>
+                    <textarea id="variantList" class="form-control" rows="5" placeholder="LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, ..."></textarea>
                 </div>
-                <div id="legend" class="pull-left">
-                    <div class="legend-elem">
-                    <div class="legendIcon" style="background:#DFF0D8;"> </div>
-                    <p class="legendText">Entry-specific</p>
-                    </div>
-                    <div class="legend-elem">
-                    <div class="legendIcon" style="background:#D9EDF7;"> </div>
-                    <p class="legendText">Found in other entries</p>
-                    </div>
-                </div>
-                <button id="submitList" type="button" class="btn btn-primary pull-right">Submit</button>
-            </form>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="alert alert-info pull-left" role="alert" style="padding:10px 15px;margin:0px 0px 5px;">
+                <span class="glyphicon glyphicon-exclamation-sign"></span> The unicity checker is currently limited to a maximum of <strong>50 peptides</strong>.</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div id="legend" class="pull-left">
+                <div class="legend-elem">
+                    <div class="legendIcon" style="background:#DFF0D8;"> </div>
+                    <p class="legendText">Entry-specific</p>
+                </div>
+                <div class="legend-elem">
+                    <div class="legendIcon" style="background:#D9EDF7;"> </div>
+                    <p class="legendText">Found in other entries</p>
+                </div>
+            </div>
+            <button id="submitList" type="button" class="btn btn-primary pull-right">Submit</button>
+            </form>
+        </div>
+    </div>  
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <hr id="separationLine">

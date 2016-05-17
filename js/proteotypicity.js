@@ -1,9 +1,9 @@
 $(document).ready(function () {
     var Nextprot = window.Nextprot;
     var nx = new Nextprot.Client("PeptideViewer", "nextprotTeam");
-    var exemples = "LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, \nCVSNTPGYCR, TTETLIILSR, IGTTVIDLENR"
+//    var exemples = "LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, \nCVSNTPGYCR, TTETLIILSR, IGTTVIDLENR"
     
-    $("#variantList").text(exemples);
+//    $("#variantList").text(exemples);
 
     function toggleIsoforms(id) {
         $("#" + id + ' #showIsoforms').text("Show isoforms");
