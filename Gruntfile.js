@@ -11,21 +11,21 @@ module.exports = function (grunt) {
                 src: ['bower_components/jquery/dist/jquery.min.js',
                     'bower_components/handlebars/handlebars.js',
                     'bower_components/nextprot/dist/nextprot.js',
-                    'js/compiled-templates.js',
-                    'js/proteotypicity.js',
+                    'app/js/compiled-templates.js',
+                    'app/js/proteotypicity.js',
                     'bower_components/iframe-resizer/js/iframeResizer.contentWindow.min.js'],
-                dest: 'app.js'
+                dest: 'dist/app.js'
             },
             css: {
-                src: ['bower_components/bootstrap/dist/css/bootstrap.css','css/style.css'],
-                dest:'app.css'
+                src: ['bower_components/bootstrap/dist/css/bootstrap.css','app/css/style.css'],
+                dest:'dist/app.css'
             }
         },
         uglify: {
             options: {sourceMap: true},
             basic: {
-                src: 'app.js',
-                dest: 'app.min.js'
+                src: 'dist/app.js',
+                dest: 'dist/app.min.js'
             }
         },
         bump: {
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 tagName: 'v%VERSION%',
                 tagMessage: 'Version %VERSION%',
                 push: true,
-                pushTo: "https://github.com/MatSchaeff/proteotypicity-checker.git",
+                pushTo: "https://github.com/MatSchaeff/unicity-checker.git",
                 gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
                 globalReplace: false,
                 prereleaseName: false,
@@ -56,22 +56,22 @@ module.exports = function (grunt) {
             }
         },
         watch: {
+            options: {
+                livereload: true
+            },
             all: {
-                options: {
-                    livereload: true
-                },
-                files: ['js/*.js','css/*.css'],
-                tasks: 'concat'
+                files: ['app/js/*.js','app/css/*.css'],
+                tasks: ['concat']
             },
             handlebars: {
-                files: ['templates/*.tmpl'],
+                files: ['app/templates/*.tmpl'],
                 tasks: ['handlebars:compile']
             }
         },
         handlebars: {
             compile: {
-                src: 'templates/*.tmpl',
-                dest: 'js/compiled-templates.js',
+                src: 'app/templates/*.tmpl',
+                dest: 'app/js/compiled-templates.js',
                 options: {
                     namespace: "HBtemplates"
                 }
@@ -80,14 +80,12 @@ module.exports = function (grunt) {
     });
 
     // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
+    grunt.loadNpmTasks('grunt-bump');
 
 
     // Default task(s).

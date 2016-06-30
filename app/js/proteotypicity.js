@@ -1,9 +1,9 @@
 $(document).ready(function () {
     var Nextprot = window.Nextprot;
     var nx = new Nextprot.Client("PeptideViewer", "nextprotTeam");
-    var exemples = "LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, \nCVSNTPGYCR, TTETLIILSR, IGTTVIDLENR"
+//    var exemples = "LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, \nCVSNTPGYCR, TTETLIILSR, IGTTVIDLENR"
     
-    $("#variantList").text(exemples);
+//    $("#variantList").text(exemples);
 
     function toggleIsoforms(id) {
         $("#" + id + ' #showIsoforms').text("Show isoforms");
@@ -19,6 +19,10 @@ $(document).ready(function () {
         $("#onlyProteo").click(function(){
             if ($(this).is(':checked')) {
                 $(".nonproteo").hide();
+                if ($("#exceptProteo").is(":checked")){
+                    $("#exceptProteo").prop("checked",false);
+                    $(".proteo").show();
+                }
             }
             else $(".nonproteo").show();
             var pepShowed = $("#peptideResult>div:visible").length;
@@ -27,6 +31,10 @@ $(document).ready(function () {
         $("#exceptProteo").click(function(){
             if ($(this).is(':checked')) {
                 $(".proteo").hide();
+                if ($("#onlyProteo").is(":checked")){
+                    $("#onlyProteo").prop("checked",false);
+                    $(".nonproteo").show();
+                }
             }
             else $(".proteo").show();
             var pepShowed = $("#peptideResult>div:visible").length;
@@ -38,20 +46,20 @@ $(document).ready(function () {
         var peptide = {
             name: pep
         }
-        var template2 = HBtemplates['templates/notFound.tmpl'];
+        var template2 = HBtemplates['app/templates/notFound.tmpl'];
         var results2 = template2(peptide);
         $("#peptideResult").prepend(results2);
         
     }
     
     function throwNbError(pep) {
-        var template3 = HBtemplates['templates/limitExceeded.tmpl'];
+        var template3 = HBtemplates['app/templates/limitExceeded.tmpl'];
         $("#peptideResult").prepend(template3);
         $(".shaft-load3").remove();
     }
     
     function throwAPIError(message) {
-        var template4 = HBtemplates['templates/apiCallFail.tmpl'];
+        var template4 = HBtemplates['app/templates/apiCallFail.tmpl'];
         var fillTemplate = template4(message);
         $("#peptideResult").prepend(fillTemplate);
         $(".shaft-load3").remove();
@@ -117,33 +125,50 @@ $(document).ready(function () {
                         });
                     })
                 };
-                var template = HBtemplates['templates/matchingEntries.tmpl'];
+                var template = HBtemplates['app/templates/matchingEntries.tmpl'];
                 var results = template(entryMatching);
                 if ($("#peptideResult>div").length > pepTotalCount-10) $(".shaft-load3").remove();
                 $("#peptideResult").append(results);
 
                 toggleIsoforms(id);
     }
-    function getMaxList(str){
-        var charToCut = "";
-        var posToCut = 2001;
-        while (charToCut !== ",") {
-            posToCut -= 1;
-            charToCut = str[posToCut];
+//    function getMaxList(str){
+//        var charToCut = "";
+//        var posToCut = 2001;
+//        while (charToCut !== ",") {
+//            posToCut -= 1;
+//            charToCut = str[posToCut];
+//        }
+//        return posToCut;
+//    }
+    function getApiCallList(listPep){
+        var list = [[]];
+        var strLength = 0;
+        var index = 0;
+        for (var i = 0; i < listPep.length; i++){
+            console.log(i);
+            if (strLength + listPep[i].length < 2000) {
+                strLength += listPep[i].length;
+                list[index].push(listPep[i]);
+            }
+            else {
+                index += 1;
+                strLength = 0;
+                list.push([]);
+            }
         }
-        return posToCut;
-    }
-    function getApiCallList(list, str){
-        if (str.length > 2000) {
-            var posToCut = getMaxList(str);
-            list.push(str.substring(0,posToCut));
-            getApiCallList(list, str.substring(posToCut+1));
-            return list;
-        }
-        else {
-            list.push(str);
-            return list;
-        }
+        return list;
+        
+//        if (strLength > 2000) {
+//            var posToCut = getMaxList(str);
+//            list.push(str.substring(0,posToCut));
+//            getApiCallList(list, str.substring(posToCut+1));
+//            return list;
+//        }
+//        else {
+//            list.push(str);
+//            return list;
+//        }
     }
     
     function getPeptideByEntry(entry, isoform){
@@ -169,45 +194,58 @@ $(document).ready(function () {
                     throwAPIError(errorMessage.message);
                 })
     }
-    function exportPepList(){
-        $("a#downloadList").click(function() {
-            var peptide_list = "";
-            $("#peptideResult>div:visible").each(function(){
-                peptide_list += $(this).attr("id") + "\n";
-            });
-            this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(peptide_list);
-        });
-    }
+    
+    // FOR NEXT VERSION
+//    function exportPepList(){
+//        $("a#downloadList").click(function() {
+//            var peptide_list = "";
+//            $("#peptideResult>div:visible").each(function(){
+//                peptide_list += $(this).attr("id") + "\n";
+//            });
+//            this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(peptide_list);
+//        });
+//    }
     
     function listOrEntry(str){
-        if (str.startsWith("NX_")) {
-            parseStr = str.split("-");
-            var entry = parseStr[0];
-            var iso = str;
-            getPeptideByEntry(entry, iso);
-        }
-        else getProteotypicityInfos(str);
+        // FOR NEXT VERSION
+//        if (str.startsWith("NX_")) {
+//            parseStr = str.split("-");
+//            var entry = parseStr[0];
+//            var iso = str;
+//            getPeptideByEntry(entry, iso);
+//        }
+//        else getProteotypicityInfos(str);
+        
+        getProteotypicityInfos(str);
     }
 
     function getProteotypicityInfos(str) {
-        var pepListString = str.replace(/\s+/g, '');
-        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
-        console.log(pepListString.length);
-        var pepTotalCount = pepListString.split(",").length;
-        console.log(pepTotalCount);
-        if (pepTotalCount < 1000) {
-            $("#countPepTotal").text(pepTotalCount);
-            console.log("total peplist length : "+pepListString.length);
-            var apiCallList = getApiCallList([],pepListString);
-            console.log("nb of api calls : "+apiCallList.length); 
+//        var test = str.split(/[\s,;]+/g);
+//        console.log("test");
+//        console.log(test);
+//        var pepListString = str.replace(/\s+/g, '');
+        var pepListTotal = str.split(/[\s,;]+/g);
+        if (pepListTotal[pepListTotal.length-1] === "") pepListTotal.pop();
+        console.log(pepListTotal);
+//        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
+        console.log(pepListTotal.length);
+//        var pepTotalCount = pepListString.split(",").length;
+//        console.log(pepTotalCount);
+        if (pepListTotal.length < 1000) {
+            $("#countPepTotal").text(pepListTotal.length);
+//            console.log("total peplist length : "+pepListString.length);
+            var apiCallList = getApiCallList(pepListTotal);
+            console.log("nb of api calls : "+apiCallList.length);
+            console.log("apiCallList");
+            console.log(apiCallList);
 //            var lastCall = false;
-            apiCallList.forEach(function(ac){
-                console.log("string length : "+ac.length);
-                var pepList = ac.split(",");
+            apiCallList.forEach(function(pepList){
+//                console.log("string length : "+ac.length);
+                var pepListString = pepList.join(",");
                 console.log("pep count : "+pepList.length);
 //                if (callIndex === apiCallList.length-1) lastCall=true;
                 
-                nx.getEntryforPeptide(ac).then(function (data) {
+                nx.getEntryforPeptide(pepListString).then(function (data) {
                     pepList.forEach(function (sequence) {
                         var id = sequence;
                         var new_data = $.extend(true,[],data);
@@ -216,10 +254,14 @@ $(document).ready(function () {
                         })
                         new_data = new_data.filter(function(d){return d.annotations.length > 0});
                         if (new_data.length < 1) throwPeptideError(sequence);
-                        addPeptideBox(new_data, sequence, id, pepTotalCount);
+                        else addPeptideBox(new_data, sequence, id, pepListTotal.length);
                     });
                     var pepShowed = $("#peptideResult>div:visible").length;
                     $("#countPepShowed").text(pepShowed);
+                }).catch(function(error) {
+                    console.log(error.responseText);
+                    var errorMessage = JSON.parse(error.responseText);
+                    throwAPIError(errorMessage.message);
                 })
             });
             toggleProteo();
@@ -245,6 +287,8 @@ $(document).ready(function () {
         //begin the computation
         var input = $("#variantList").val().toUpperCase();
         listOrEntry(input);
-        exportPepList();
+        
+        // FOR NEXT VERSION
+//        exportPepList();
     });
 });

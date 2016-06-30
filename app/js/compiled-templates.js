@@ -1,16 +1,16 @@
 this["HBtemplates"] = this["HBtemplates"] || {};
 
-this["HBtemplates"]["templates/apiCallFail.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["HBtemplates"]["app/templates/apiCallFail.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Impossible to get the data !\n        </div>\n        <div class=\"panel-body\">\n            "
     + this.escapeExpression(this.lambda(depth0, depth0))
     + "\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
-this["HBtemplates"]["templates/limitExceeded.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["HBtemplates"]["app/templates/limitExceeded.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of <strong>1000</strong> peptides.\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
-this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "proteo";
 },"3":function(depth0,helpers,partials,data) {
     return "nonproteo";
@@ -130,7 +130,7 @@ this["HBtemplates"]["templates/matchingEntries.tmpl"] = Handlebars.template({"1"
   return buffer + "                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n    </div>\n    </div>\n    </div>";
 },"useData":true});
 
-this["HBtemplates"]["templates/notFound.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["HBtemplates"]["app/templates/notFound.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;
 
   return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
