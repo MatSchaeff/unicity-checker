@@ -5531,19 +5531,21 @@ this["HBtemplates"]["templates/overviewProtein.tmpl"] = Handlebars.template({"1"
 this["HBtemplates"] = this["HBtemplates"] || {};
 
 this["HBtemplates"]["app/templates/apiCallFail.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Impossible to get the data !\n        </div>\n        <div class=\"panel-body\">\n            "
-    + this.escapeExpression(this.lambda(depth0, depth0))
+    var stack1;
+
+  return "<div class=\"col-md-12\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Impossible to get the data !\n        </div>\n        <div class=\"panel-body\">\n            "
+    + ((stack1 = this.lambda(depth0, depth0)) != null ? stack1 : "")
     + "\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
 this["HBtemplates"]["app/templates/limitExceeded.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of <strong>1000</strong> peptides.\n        </div>\n    </div>\n</div>";
+    return "<div class=\"col-md-12\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Limit exceeded !\n        </div>\n        <div class=\"panel-body\">\n            You have exceeded the maximum number of <strong>1000</strong> peptides.\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
 this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "proteo";
+    return "proteoWithVariant";
 },"3":function(depth0,helpers,partials,data) {
-    return "nonproteo";
+    return "proteoWithoutVariant";
 },"5":function(depth0,helpers,partials,data) {
     var stack1;
 
@@ -5626,8 +5628,10 @@ this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template(
     var stack1, helper, options, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=helpers.blockHelperMissing, buffer = 
   "<div id="
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + " class=\"col-md-4 "
-    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.withVariant : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + " class=\"col-md-4 peptide "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.withVariant : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + " "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.withoutVariant : stack1),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\">\n<div id=\"proteoBlock\" class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h5 class=\"text-center\" style=\"margin:0px;\">"
     + alias3(((helper = (helper = helpers.peptide || (depth0 != null ? depth0.peptide : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"peptide","hash":{},"data":data}) : helper)))
     + "</h5>\n    </div>\n<div id=\"proteoBody\" class=\"panel-body\" style=\"padding:0px;height:240px;overflow:auto;\">\n                        \n    <div class=\"pull-right\" style=\"margin-top:8px;margin-right: 15px;\">\n        <button id=\"showIsoforms\" type=\"button\" class=\"btn btn-default btn-xs\">Show isoforms</button>\n    </div>\n    <div id=\"proteomeProperties\">\n        <!--<div style=\"border-bottom:1px solid #E7EAEC;margin-top: -10px;margin-bottom:5px;\">-->\n        <!--<h5 id=\"proteotypicitySentence\"></h5>-->\n        <!--</div>-->\n";
@@ -5663,7 +5667,7 @@ this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template(
 this["HBtemplates"]["app/templates/notFound.tmpl"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "<div class=\"col-md-10 col-md-offset-1\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
+  return "<div class=\"col-md-12\">\n    <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">\n            Peptide not found !\n        </div>\n        <div class=\"panel-body\">\n            The peptide <strong>"
     + this.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
     + "</strong> has not been found in our database. Please check again the sequence or enter a new peptide.\n        </div>\n    </div>\n</div>";
 },"useData":true});
@@ -5685,27 +5689,26 @@ $(document).ready(function () {
         });
     }
     function toggleProteo(){
-        $("#onlyProteo").click(function(){
+        $("#onlyProteoWithV").click(function(){
+            console.log("cliccck");
             if ($(this).is(':checked')) {
-                $(".nonproteo").hide();
-                if ($("#exceptProteo").is(":checked")){
-                    $("#exceptProteo").prop("checked",false);
-                    $(".proteo").show();
-                }
+                $(".proteoWithVariant").show();
+                $(".peptide:not(.proteoWithVariant)").hide();
+                $("#onlyProteoWithoutV").prop("checked",false);
             }
-            else $(".nonproteo").show();
+            else $(".peptide").show();
+            
             var pepShowed = $("#peptideResult>div:visible").length;
             $("#countPepShowed").text(pepShowed);
         })
-        $("#exceptProteo").click(function(){
+        $("#onlyProteoWithoutV").click(function(){
             if ($(this).is(':checked')) {
-                $(".proteo").hide();
-                if ($("#onlyProteo").is(":checked")){
-                    $("#onlyProteo").prop("checked",false);
-                    $(".nonproteo").show();
-                }
+                $(".proteoWithoutVariant").show();
+                $(".peptide:not(.proteoWithoutVariant)").hide();
+                $("#onlyProteoWithV").prop("checked",false);
             }
-            else $(".proteo").show();
+            else $(".peptide").show();
+            
             var pepShowed = $("#peptideResult>div:visible").length;
             $("#countPepShowed").text(pepShowed);
         })
@@ -5717,20 +5720,20 @@ $(document).ready(function () {
         }
         var template2 = HBtemplates['app/templates/notFound.tmpl'];
         var results2 = template2(peptide);
-        $("#peptideResult").prepend(results2);
+        $("#errorMessages").append(results2);
         
     }
     
     function throwNbError(pep) {
         var template3 = HBtemplates['app/templates/limitExceeded.tmpl'];
-        $("#peptideResult").prepend(template3);
+        $("#errorMessages").append(template3);
         $(".shaft-load3").remove();
     }
     
     function throwAPIError(message) {
         var template4 = HBtemplates['app/templates/apiCallFail.tmpl'];
         var fillTemplate = template4(message);
-        $("#peptideResult").prepend(fillTemplate);
+        $("#errorMessages").append(fillTemplate);
         $(".shaft-load3").remove();
     }
     
@@ -5815,7 +5818,10 @@ $(document).ready(function () {
         var index = 0;
         for (var i = 0; i < listPep.length; i++){
             console.log(i);
-            if (strLength + listPep[i].length < 2000) {
+            if (listPep[i].length < 6){
+                throwAPIError("The peptide <strong>" + listPep[i] + "</strong> is too short. A peptide must have a minimum length of 6 amino-acids.");
+            }
+            else if (strLength + listPep[i].length < 2000) {
                 strLength += listPep[i].length;
                 list[index].push(listPep[i]);
             }
@@ -5885,7 +5891,7 @@ $(document).ready(function () {
 //        }
 //        else getProteotypicityInfos(str);
         
-        var regex = /[^;,a-zA-Z\s]/gi;
+        var regex = /[^;,ACDEFGHIKLMNPQRSTVWY\s]/gi;
         var matches = str.match(regex);
         console.log("matches1");
         console.log(matches);
@@ -5902,6 +5908,12 @@ $(document).ready(function () {
 //        }
         else getProteotypicityInfos(str);
     }
+    
+    function countPeptideSubmitted(count){
+        var countHtml = "<div id='pepSub' class='alert alert-info'><strong>"+count+" peptides submitted.</strong></div>";
+        $("#countSubmitted").html(countHtml);
+//        $("#countSubmitted").fadeIn();
+    }
 
     function getProteotypicityInfos(str) {
 //        var test = str.split(/[\s,;]+/g);
@@ -5913,10 +5925,11 @@ $(document).ready(function () {
         console.log(pepListTotal);
 //        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
         console.log(pepListTotal.length);
+        
+        countPeptideSubmitted(pepListTotal.length);
 //        var pepTotalCount = pepListString.split(",").length;
 //        console.log(pepTotalCount);
         if (pepListTotal.length < 1000) {
-            $("#countPepTotal").text(pepListTotal.length);
 //            console.log("total peplist length : "+pepListString.length);
             var apiCallList = getApiCallList(pepListTotal);
             console.log("nb of api calls : "+apiCallList.length);
@@ -5944,6 +5957,7 @@ $(document).ready(function () {
                     });
                     var pepShowed = $("#peptideResult>div:visible:not(.shaft-load3)").length;
                     $("#countPepShowed").text(pepShowed);
+                    $("#countPepTotal").text(pepShowed);
                     countCallFinished += 1;
                     if (countCallFinished === countApiCalls) $(".shaft-load3").remove();
                     
@@ -5968,6 +5982,10 @@ $(document).ready(function () {
         //reset the counter for visible peptides
         $("#countPepShowed").text("0");
         $("#countPepTotal").text("0");
+        
+        //reset the error messages
+        $("#errorMessages").html("");
+        $("#countSubmitted").html("");
         
         //add the loader
         var source = $("#loader-template").html();

@@ -3,6 +3,7 @@
 <head>
     <title>neXtProt Unicity checker</title>
     <link rel="stylesheet" type="text/css" href="../dist/app.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
     <script src="../dist/app.js"></script>
     <script id="loader-template" type="text/x-handlebars-template">
         <div class="shaft-load3">
@@ -40,8 +41,8 @@
                     <label style="display:block;">Enter your peptide(s) : </label>
                     <textarea id="variantList" class="form-control" rows="5" placeholder="LQELFLQEVR, AATDFVQEMR, TKMGLYYSYFK, ..."></textarea>
                 </div>
-                <div class="alert alert-info pull-left" role="alert" style="padding:10px 15px;margin:0px;">
-                    <span class="glyphicon glyphicon-exclamation-sign"></span> The unicity checker is currently limited to a maximum of <strong>1000 peptides</strong>.</div>
+                <div id="limitInfos" class="alert alert-warning pull-left" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> The unicity checker is currently limited to a maximum of <strong>1000 peptides</strong>. Peptides must be <strong>minimum 6 aa</strong> in length.</div>
                 <!--
                 <div class="pull-left">
                     <p class="bg-warning"></p>
@@ -51,6 +52,14 @@
                     <span class="glyphicon glyphicon-screenshot"></span> Check
                 </button>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            <div id="errorMessages"></div>
+        </div>
+        <div class="col-md-2">
+            <div id="countSubmitted"></div>
         </div>
     </div>
     <div class="row">
@@ -69,10 +78,10 @@
             <div class="pull-right filters" style="margin-bottom:30px;">
                 <label style="margin:0px 10px;padding-top:2px;vertical-align:middle;font-style:italic;">FILTERS </label>
                 <label class="checkbox-inline" style="font-style:italic;">
-                    <input type="checkbox" id="onlyProteo" value="option1"> Only entry-specific
+                    <input type="checkbox" id="onlyProteoWithV" value="option1"> Entry-specific taking into account variants
                 </label>
                 <label class="checkbox-inline" style="font-style:italic;">
-                    <input type="checkbox" id="exceptProteo" value="option2"> Except entry-specific
+                    <input type="checkbox" id="onlyProteoWithoutV" value="option2"> Entry-specific without variants
                 </label>
                 <div>
                     <div class="btn-group pepShowed pull-right" role="group" style="margin-top:10px;">

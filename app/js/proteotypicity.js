@@ -16,27 +16,26 @@ $(document).ready(function () {
         });
     }
     function toggleProteo(){
-        $("#onlyProteo").click(function(){
+        $("#onlyProteoWithV").click(function(){
+            console.log("cliccck");
             if ($(this).is(':checked')) {
-                $(".nonproteo").hide();
-                if ($("#exceptProteo").is(":checked")){
-                    $("#exceptProteo").prop("checked",false);
-                    $(".proteo").show();
-                }
+                $(".proteoWithVariant").show();
+                $(".peptide:not(.proteoWithVariant)").hide();
+                $("#onlyProteoWithoutV").prop("checked",false);
             }
-            else $(".nonproteo").show();
+            else $(".peptide").show();
+            
             var pepShowed = $("#peptideResult>div:visible").length;
             $("#countPepShowed").text(pepShowed);
         })
-        $("#exceptProteo").click(function(){
+        $("#onlyProteoWithoutV").click(function(){
             if ($(this).is(':checked')) {
-                $(".proteo").hide();
-                if ($("#onlyProteo").is(":checked")){
-                    $("#onlyProteo").prop("checked",false);
-                    $(".nonproteo").show();
-                }
+                $(".proteoWithoutVariant").show();
+                $(".peptide:not(.proteoWithoutVariant)").hide();
+                $("#onlyProteoWithV").prop("checked",false);
             }
-            else $(".proteo").show();
+            else $(".peptide").show();
+            
             var pepShowed = $("#peptideResult>div:visible").length;
             $("#countPepShowed").text(pepShowed);
         })
@@ -48,20 +47,20 @@ $(document).ready(function () {
         }
         var template2 = HBtemplates['app/templates/notFound.tmpl'];
         var results2 = template2(peptide);
-        $("#peptideResult").prepend(results2);
+        $("#errorMessages").append(results2);
         
     }
     
     function throwNbError(pep) {
         var template3 = HBtemplates['app/templates/limitExceeded.tmpl'];
-        $("#peptideResult").prepend(template3);
+        $("#errorMessages").append(template3);
         $(".shaft-load3").remove();
     }
     
     function throwAPIError(message) {
         var template4 = HBtemplates['app/templates/apiCallFail.tmpl'];
         var fillTemplate = template4(message);
-        $("#peptideResult").prepend(fillTemplate);
+        $("#errorMessages").append(fillTemplate);
         $(".shaft-load3").remove();
     }
     
@@ -146,7 +145,10 @@ $(document).ready(function () {
         var index = 0;
         for (var i = 0; i < listPep.length; i++){
             console.log(i);
-            if (strLength + listPep[i].length < 2000) {
+            if (listPep[i].length < 6){
+                throwAPIError("The peptide <strong>" + listPep[i] + "</strong> is too short. A peptide must have a minimum length of 6 amino-acids.");
+            }
+            else if (strLength + listPep[i].length < 2000) {
                 strLength += listPep[i].length;
                 list[index].push(listPep[i]);
             }
@@ -216,7 +218,7 @@ $(document).ready(function () {
 //        }
 //        else getProteotypicityInfos(str);
         
-        var regex = /[^;,a-zA-Z\s]/gi;
+        var regex = /[^;,ACDEFGHIKLMNPQRSTVWY\s]/gi;
         var matches = str.match(regex);
         console.log("matches1");
         console.log(matches);
@@ -233,6 +235,12 @@ $(document).ready(function () {
 //        }
         else getProteotypicityInfos(str);
     }
+    
+    function countPeptideSubmitted(count){
+        var countHtml = "<div id='pepSub' class='alert alert-info'><strong>"+count+" peptides submitted.</strong></div>";
+        $("#countSubmitted").html(countHtml);
+//        $("#countSubmitted").fadeIn();
+    }
 
     function getProteotypicityInfos(str) {
 //        var test = str.split(/[\s,;]+/g);
@@ -244,10 +252,11 @@ $(document).ready(function () {
         console.log(pepListTotal);
 //        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
         console.log(pepListTotal.length);
+        
+        countPeptideSubmitted(pepListTotal.length);
 //        var pepTotalCount = pepListString.split(",").length;
 //        console.log(pepTotalCount);
         if (pepListTotal.length < 1000) {
-            $("#countPepTotal").text(pepListTotal.length);
 //            console.log("total peplist length : "+pepListString.length);
             var apiCallList = getApiCallList(pepListTotal);
             console.log("nb of api calls : "+apiCallList.length);
@@ -275,6 +284,7 @@ $(document).ready(function () {
                     });
                     var pepShowed = $("#peptideResult>div:visible:not(.shaft-load3)").length;
                     $("#countPepShowed").text(pepShowed);
+                    $("#countPepTotal").text(pepShowed);
                     countCallFinished += 1;
                     if (countCallFinished === countApiCalls) $(".shaft-load3").remove();
                     
@@ -299,6 +309,10 @@ $(document).ready(function () {
         //reset the counter for visible peptides
         $("#countPepShowed").text("0");
         $("#countPepTotal").text("0");
+        
+        //reset the error messages
+        $("#errorMessages").html("");
+        $("#countSubmitted").html("");
         
         //add the loader
         var source = $("#loader-template").html();

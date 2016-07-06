@@ -1,3 +1,23 @@
+html {
+  height:100%;
+/*  background: #222232;*/
+  text-align: center;
+  color: #56D7C6;
+}
+body{
+    height:100%;
+    color: #222232;
+    font-family:"Lato","Helvetica Neue","Helvetica",sans-serif;
+/*    margin-top:50px;*/
+}
+html *,
+html *:before,
+html *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .legendIcon{
     display:inline-block;
     width:20px;
@@ -21,6 +41,17 @@
 #submitList{
     display:inline-block;
 }
+#limitInfos{
+    padding:7px 15px;
+    margin:0px 15px;
+}
+#errorMessages .panel{
+    margin: 20px 0px 0px;
+}
+#pepSub{
+    margin: 20px 0px 0px;
+    padding:7px 15px;
+}
 #legend{
     display:inline-block;
     text-align: left;
@@ -40,29 +71,10 @@
 }
 */
 .mainTitle{
-    font-weight:200;
+    font-weight:500;
     font-size:50px;
-    margin-bottom:70px;
+    margin-bottom:50px;
     color:#222232;
-}
-
-html {
-  height:100%;
-/*  background: #222232;*/
-  text-align: center;
-  color: #56D7C6;
-}
-body{
-    height:100%;
-  color: #222232;
-/*    margin-top:50px;*/
-}
-html *,
-html *:before,
-html *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 a {
