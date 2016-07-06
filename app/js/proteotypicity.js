@@ -127,7 +127,6 @@ $(document).ready(function () {
                 };
                 var template = HBtemplates['app/templates/matchingEntries.tmpl'];
                 var results = template(entryMatching);
-                if ($("#peptideResult>div").length > pepTotalCount-10) $(".shaft-load3").remove();
                 $("#peptideResult").append(results);
 
                 toggleIsoforms(id);
@@ -155,6 +154,7 @@ $(document).ready(function () {
                 index += 1;
                 strLength = 0;
                 list.push([]);
+                list[index].push(listPep[i]);
             }
         }
         return list;
@@ -216,7 +216,22 @@ $(document).ready(function () {
 //        }
 //        else getProteotypicityInfos(str);
         
-        getProteotypicityInfos(str);
+        var regex = /[^;,a-zA-Z\s]/gi;
+        var matches = str.match(regex);
+        console.log("matches1");
+        console.log(matches);
+        if (matches && matches.length > 0){
+            var illegalChars = matches.join('", "');
+            var message = 'Your peptide list contains illegal characters : "' + illegalChars + '".';
+            throwAPIError(message);
+//            console.log("matches");
+//            console.log(matches);
+        }
+//        if (regex.test(str) == true){
+//            var message = "Your peptide list contains illegal characters."
+//            throwAPIError(message);
+//        }
+        else getProteotypicityInfos(str);
     }
 
     function getProteotypicityInfos(str) {
@@ -238,6 +253,8 @@ $(document).ready(function () {
             console.log("nb of api calls : "+apiCallList.length);
             console.log("apiCallList");
             console.log(apiCallList);
+            var countApiCalls = apiCallList.length;
+            var countCallFinished = 0;
 //            var lastCall = false;
             apiCallList.forEach(function(pepList){
 //                console.log("string length : "+ac.length);
@@ -256,9 +273,14 @@ $(document).ready(function () {
                         if (new_data.length < 1) throwPeptideError(sequence);
                         else addPeptideBox(new_data, sequence, id, pepListTotal.length);
                     });
-                    var pepShowed = $("#peptideResult>div:visible").length;
+                    var pepShowed = $("#peptideResult>div:visible:not(.shaft-load3)").length;
                     $("#countPepShowed").text(pepShowed);
+                    countCallFinished += 1;
+                    if (countCallFinished === countApiCalls) $(".shaft-load3").remove();
+                    
                 }).catch(function(error) {
+                    countCallFinished += 1;
+                    if (countCallFinished === countApiCalls) $(".shaft-load3").remove();
                     console.log(error.responseText);
                     var errorMessage = JSON.parse(error.responseText);
                     throwAPIError(errorMessage.message);
