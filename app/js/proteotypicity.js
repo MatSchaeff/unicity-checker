@@ -17,7 +17,6 @@ $(document).ready(function () {
     }
     function toggleProteo(){
         $("#onlyProteoWithV").click(function(){
-            console.log("cliccck");
             if ($(this).is(':checked')) {
                 $(".proteoWithVariant").show();
                 $(".peptide:not(.proteoWithVariant)").hide();
@@ -107,7 +106,8 @@ $(document).ready(function () {
                     proteotypicity: {
                         withVariant: entriesLength <= 1,
                         withoutVariant: entriesLengthWithoutVariant <= 1,
-                        onlyVariant: entriesLengthWithVariant < 1
+                        onlyWithoutVariant: entriesLengthWithVariant < 1,
+                        onlyWithVariant: entriesLengthWithoutVariant < 1
                     },
                     entries: entries,
                     isoforms: data.map(function (o) {
@@ -124,6 +124,8 @@ $(document).ready(function () {
                         });
                     })
                 };
+//                console.log("entryMatching");
+//                console.log(entryMatching);
                 var template = HBtemplates['app/templates/matchingEntries.tmpl'];
                 var results = template(entryMatching);
                 $("#peptideResult").append(results);
@@ -144,7 +146,6 @@ $(document).ready(function () {
         var strLength = 0;
         var index = 0;
         for (var i = 0; i < listPep.length; i++){
-            console.log(i);
             if (listPep[i].length < 6){
                 throwAPIError("The peptide <strong>" + listPep[i] + "</strong> is too short. A peptide must have a minimum length of 6 amino-acids.");
             }
@@ -220,8 +221,8 @@ $(document).ready(function () {
         
         var regex = /[^;,ACDEFGHIKLMNPQRSTVWY\s]/gi;
         var matches = str.match(regex);
-        console.log("matches1");
-        console.log(matches);
+//        console.log("matches1");
+//        console.log(matches);
         if (matches && matches.length > 0){
             var illegalChars = matches.join('", "');
             var message = 'Your peptide list contains illegal characters : "' + illegalChars + '".';
@@ -249,9 +250,9 @@ $(document).ready(function () {
 //        var pepListString = str.replace(/\s+/g, '');
         var pepListTotal = str.split(/[\s,;]+/g);
         if (pepListTotal[pepListTotal.length-1] === "") pepListTotal.pop();
-        console.log(pepListTotal);
+//        console.log(pepListTotal);
 //        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
-        console.log(pepListTotal.length);
+//        console.log(pepListTotal.length);
         
         countPeptideSubmitted(pepListTotal.length);
 //        var pepTotalCount = pepListString.split(",").length;

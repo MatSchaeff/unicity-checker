@@ -5545,22 +5545,28 @@ this["HBtemplates"]["app/templates/limitExceeded.tmpl"] = Handlebars.template({"
 this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "proteoWithVariant";
 },"3":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.unless.call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyWithVariant : stack1),{"name":"unless","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"4":function(depth0,helpers,partials,data) {
     return "proteoWithoutVariant";
-},"5":function(depth0,helpers,partials,data) {
+},"6":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.program(8, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(7, data, 0),"inverse":this.program(9, data, 0),"data":data})) != null ? stack1 : "")
     + "\n";
-},"6":function(depth0,helpers,partials,data) {
+},"7":function(depth0,helpers,partials,data) {
     return "<div  class=\"panel panel-success\" style=\"margin:0px;min-height: 120px;\">\n        ";
-},"8":function(depth0,helpers,partials,data) {
+},"9":function(depth0,helpers,partials,data) {
     return "<div class=\"panel panel-info\" style=\"margin:0px;min-height: 120px;\">";
-},"10":function(depth0,helpers,partials,data) {
+},"11":function(depth0,helpers,partials,data) {
+    return "                        <li>No entries found</li>\n";
+},"13":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"11":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withoutVariant : depth0),{"name":"if","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"14":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "                        <li>"
@@ -5568,34 +5574,34 @@ this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template(
     + " <em> ( Gene Name : "
     + alias3(((helper = (helper = helpers.geneName || (depth0 != null ? depth0.geneName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"geneName","hash":{},"data":data}) : helper)))
     + " )</em></li>\n";
-},"13":function(depth0,helpers,partials,data) {
+},"16":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"14":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"17":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "\n\n"
-    + ((stack1 = helpers.unless.call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"unless","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"15":function(depth0,helpers,partials,data) {
+    + ((stack1 = helpers.unless.call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"unless","hash":{},"fn":this.program(18, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"18":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                        <li>"
     + this.escapeExpression(((helper = (helper = helpers.isoform || (depth0 != null ? depth0.isoform : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"isoform","hash":{},"data":data}) : helper)))
     + "</li>\n";
-},"17":function(depth0,helpers,partials,data) {
+},"20":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.program(8, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(7, data, 0),"inverse":this.program(9, data, 0),"data":data})) != null ? stack1 : "")
     + "\n";
-},"19":function(depth0,helpers,partials,data) {
+},"22":function(depth0,helpers,partials,data) {
     return "                        <li>No other entries found</li>\n";
-},"21":function(depth0,helpers,partials,data) {
+},"24":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"22":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.withVariant : depth0),{"name":"if","hash":{},"fn":this.program(25, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"25":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "                        <li class=\"variantIntoAccount\">"
@@ -5603,16 +5609,16 @@ this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template(
     + " <em> ( Gene Name : "
     + alias3(((helper = (helper = helpers.geneName || (depth0 != null ? depth0.geneName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"geneName","hash":{},"data":data}) : helper)))
     + " )</em></li>\n";
-},"24":function(depth0,helpers,partials,data) {
+},"27":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(25, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"25":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"28":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "\n\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"26":function(depth0,helpers,partials,data) {
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.variant : depth0),{"name":"if","hash":{},"fn":this.program(29, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"29":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=this.escapeExpression, alias2=this.lambda;
 
   return "                        <li class=\"variantIntoAccount\">"
@@ -5635,30 +5641,33 @@ this["HBtemplates"]["app/templates/matchingEntries.tmpl"] = Handlebars.template(
     + "\">\n<div id=\"proteoBlock\" class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h5 class=\"text-center\" style=\"margin:0px;\">"
     + alias3(((helper = (helper = helpers.peptide || (depth0 != null ? depth0.peptide : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"peptide","hash":{},"data":data}) : helper)))
     + "</h5>\n    </div>\n<div id=\"proteoBody\" class=\"panel-body\" style=\"padding:0px;height:240px;overflow:auto;\">\n                        \n    <div class=\"pull-right\" style=\"margin-top:8px;margin-right: 15px;\">\n        <button id=\"showIsoforms\" type=\"button\" class=\"btn btn-default btn-xs\">Show isoforms</button>\n    </div>\n    <div id=\"proteomeProperties\">\n        <!--<div style=\"border-bottom:1px solid #E7EAEC;margin-top: -10px;margin-bottom:5px;\">-->\n        <!--<h5 id=\"proteotypicitySentence\"></h5>-->\n        <!--</div>-->\n";
-  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.proteotypicity) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
-  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Entry mapping</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n";
-  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
-  if (!helpers.entries) { stack1 = alias4.call(depth0,stack1,options)}
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "                    </ul>\n                </div>\n                <div class=\"showIsoform\" style=\"display:none\">\n                    <ul>\n                        ";
-  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
-  if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "                    </ul>\n                </div>\n            </div>\n        </div>\n";
-  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
-  if (!helpers.proteotypicity) { stack1 = alias4.call(depth0,stack1,options)}
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Additional mappings with known variants</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n"
-    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Entry mapping</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n"
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyWithVariant : stack1),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.entries) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   buffer += "                    </ul>\n                </div>\n                <div class=\"showIsoform\" style=\"display:none\">\n                    <ul>\n"
-    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyVariant : stack1),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyWithVariant : stack1),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "                        ";
-  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(16, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "                    </ul>\n                </div>\n            </div>\n        </div>\n";
+  stack1 = ((helper = (helper = helpers.proteotypicity || (depth0 != null ? depth0.proteotypicity : depth0)) != null ? helper : alias1),(options={"name":"proteotypicity","hash":{},"fn":this.program(20, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  if (!helpers.proteotypicity) { stack1 = alias4.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "            <div class=\"panel-heading\" style=\"padding:1px 15px\">\n                <h5>Additional mappings with known variants</h5>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"showEntry\" style=\"display:block\">\n                    <ul>\n"
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyWithoutVariant : stack1),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+  stack1 = ((helper = (helper = helpers.entries || (depth0 != null ? depth0.entries : depth0)) != null ? helper : alias1),(options={"name":"entries","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  if (!helpers.entries) { stack1 = alias4.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "                    </ul>\n                </div>\n                <div class=\"showIsoform\" style=\"display:none\">\n                    <ul>\n"
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.proteotypicity : depth0)) != null ? stack1.onlyWithoutVariant : stack1),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "                        ";
+  stack1 = ((helper = (helper = helpers.isoforms || (depth0 != null ? depth0.isoforms : depth0)) != null ? helper : alias1),(options={"name":"isoforms","hash":{},"fn":this.program(27, data, 0),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.isoforms) { stack1 = alias4.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
   return buffer + "                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n    </div>\n    </div>\n    </div>";
@@ -5690,7 +5699,6 @@ $(document).ready(function () {
     }
     function toggleProteo(){
         $("#onlyProteoWithV").click(function(){
-            console.log("cliccck");
             if ($(this).is(':checked')) {
                 $(".proteoWithVariant").show();
                 $(".peptide:not(.proteoWithVariant)").hide();
@@ -5780,7 +5788,8 @@ $(document).ready(function () {
                     proteotypicity: {
                         withVariant: entriesLength <= 1,
                         withoutVariant: entriesLengthWithoutVariant <= 1,
-                        onlyVariant: entriesLengthWithVariant < 1
+                        onlyWithoutVariant: entriesLengthWithVariant < 1,
+                        onlyWithVariant: entriesLengthWithoutVariant < 1
                     },
                     entries: entries,
                     isoforms: data.map(function (o) {
@@ -5797,6 +5806,8 @@ $(document).ready(function () {
                         });
                     })
                 };
+//                console.log("entryMatching");
+//                console.log(entryMatching);
                 var template = HBtemplates['app/templates/matchingEntries.tmpl'];
                 var results = template(entryMatching);
                 $("#peptideResult").append(results);
@@ -5817,7 +5828,6 @@ $(document).ready(function () {
         var strLength = 0;
         var index = 0;
         for (var i = 0; i < listPep.length; i++){
-            console.log(i);
             if (listPep[i].length < 6){
                 throwAPIError("The peptide <strong>" + listPep[i] + "</strong> is too short. A peptide must have a minimum length of 6 amino-acids.");
             }
@@ -5893,8 +5903,8 @@ $(document).ready(function () {
         
         var regex = /[^;,ACDEFGHIKLMNPQRSTVWY\s]/gi;
         var matches = str.match(regex);
-        console.log("matches1");
-        console.log(matches);
+//        console.log("matches1");
+//        console.log(matches);
         if (matches && matches.length > 0){
             var illegalChars = matches.join('", "');
             var message = 'Your peptide list contains illegal characters : "' + illegalChars + '".';
@@ -5922,9 +5932,9 @@ $(document).ready(function () {
 //        var pepListString = str.replace(/\s+/g, '');
         var pepListTotal = str.split(/[\s,;]+/g);
         if (pepListTotal[pepListTotal.length-1] === "") pepListTotal.pop();
-        console.log(pepListTotal);
+//        console.log(pepListTotal);
 //        if (pepListString.endsWith(",")) pepListString = pepListString.slice(0,-1);
-        console.log(pepListTotal.length);
+//        console.log(pepListTotal.length);
         
         countPeptideSubmitted(pepListTotal.length);
 //        var pepTotalCount = pepListString.split(",").length;
